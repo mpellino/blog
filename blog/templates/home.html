@@ -3,7 +3,15 @@
 {% block body %}
     {%  for post in object_list %}
         <div class="post-entry">
-            <h2><a href="">{{ post.title }}</a></h2>
+            <h2><a href="{% url 'post_detail' post.pk  %}">{{ post.title }}</a></h2>
+        <!--EXPLANATION OF LINKING posts to the homepage.
+         We start off by telling our Django template we want to reference a URLConf
+        by using the code % url ... %. Which URL? The one named post_detail,
+        which is the name we gave BlogDetailView in our URLConf just a moment ago.
+        If we look at post_detail in our URLConf, we see that it expects to be passed
+        an argument pk representing the primary key for the blog post. Fortunately,
+        Django has already created and included this pk field on our post object.
+         We pass it into the URLConf by adding it in the template as post.pk. -->
             <p>{{ post.body }}</p>
         </div>
     {% endfor %}
