@@ -17,6 +17,13 @@
         </div>
     </header>
 
+    {% if user.is_authenticated %}
+        <p> Welcome back {{ user.username }}</p>
+    {% else %}
+        <p>You are not logged in, please log in</p>
+        <a href="{% url 'login' %}"> Log in </a>
+    {% endif %}
+
     <div>
         {% block body %}
         {% endblock body %}
